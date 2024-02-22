@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\FireworkProblem\\RocketScience.csproj": {}
+    "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\LightingFireworkProblem\\RocketScience.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\FireworkProblem\\RocketScience.csproj": {
+    "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\LightingFireworkProblem\\RocketScience.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\FireworkProblem\\RocketScience.csproj",
+        "projectUniqueName": "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\LightingFireworkProblem\\RocketScience.csproj",
         "projectName": "RocketScience",
-        "projectPath": "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\FireworkProblem\\RocketScience.csproj",
+        "projectPath": "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\LightingFireworkProblem\\RocketScience.csproj",
         "packagesPath": "C:\\Users\\Kathi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\FireworkProblem\\obj\\",
+        "outputPath": "C:\\Users\\Kathi\\Dokumente\\cs-codes\\CABS\\LightingFireworkProblem\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kathi\\AppData\\Roaming\\NuGet\\NuGet.Config",

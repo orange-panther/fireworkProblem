@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RocketScience")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+865e1fd6a2d3668f8139f3372004edb1d6a454ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("RocketScience")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RocketScience")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

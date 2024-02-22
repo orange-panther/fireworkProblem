@@ -13,53 +13,55 @@ const int STARRING = 0;
 const int GRABBING = 1;
 const int LIGHTING = 2;
 
-var mutex = new Semaphore(1, 2);
+var mutex = new Semaphore(1, 1);
 var s = new Semaphore[LITTLE_BOYS];
 var state = new int[LITTLE_BOYS];
 int leftLittleBoy;
 int rightLittleBoy;
 
-for (int i = 0; true; i++)
+for (int i = 0; i < LITTLE_BOYS; i++)
 {
-    int littleBoy = i % (LITTLE_BOYS - 1);
+    s[i] = new Semaphore(0, 1); // Initialize semaphore for each little boy
+}
+
+for (int i = 0; i < LITTLE_BOYS; i++)
+{
+    int littleBoy = i % LITTLE_BOYS;
     leftLittleBoy = (littleBoy + LITTLE_BOYS - 1) % LITTLE_BOYS;
     rightLittleBoy = (littleBoy + 1) % LITTLE_BOYS;
     LittleBoy(littleBoy);
 }
 
+Console.WriteLine("All little boys have lit their firework!");
 
 void LittleBoy(int littleBoy)
 {
-    Starring(); //Boy stares at the firework in the sky (thread sleeps)
-    GrabLighter(littleBoy); //Boy tries to grab 2 lighters
-    Light(); //Boy lightes the firework
-    PutLighter(littleBoy); //Boy puts lighters down
+    Starring(littleBoy); // Boy stares at the firework in the sky (thread sleeps)
+    GrabLighter(littleBoy); // Boy tries to grab 2 lighters
+    Light(littleBoy); // Boy lights the firework
+    PutLighter(littleBoy); // Boy puts lighters down
 }
 
-void Starring()
+void Starring(int littleBoy)
 {
-    //little boy is looking at fireworks
+    // Little boy is looking at fireworks
+    Console.WriteLine($"Little boy {littleBoy + 1} is staring at the firework...");
+    Thread.Sleep(1000);
 }
 
-void Light()
+void Light(int littleBoy)
 {
-    //boy lightes the firework
+    // Boy lights the firework
+    Console.WriteLine($"Little boy {littleBoy + 1} is lighting the firework...");
+    Thread.Sleep(1000);
 }
-
 
 void GrabLighter(int littleBoy)
 {
-    // mutex.WaitOne();
-    // state[littleBoy] = GRABBING;
-    // TryAquireLighters(littleBoy);
-    // mutex.Release();
-    // s[littleBoy].WaitOne();
-
-    lock (mutex)
-    {
-        state[littleBoy] = GRABBING;
-        TryAquireLighters(littleBoy);
-    }
+    mutex.WaitOne();
+    state[littleBoy] = GRABBING;
+    TryAcquireLighters(littleBoy);
+    mutex.Release();
     s[littleBoy].WaitOne();
 }
 
@@ -67,22 +69,18 @@ void PutLighter(int littleBoy)
 {
     mutex.WaitOne();
     state[littleBoy] = STARRING;
-    TryAquireLighters(leftLittleBoy);
-    TryAquireLighters(rightLittleBoy);
+    TryAcquireLighters(leftLittleBoy);
+    TryAcquireLighters(rightLittleBoy);
     mutex.Release();
+    Console.WriteLine($"Little boy {littleBoy + 1} has put down the lighter...");
+    Thread.Sleep(1000);
 }
 
-void TryAquireLighters(int littleBoy)
+void TryAcquireLighters(int littleBoy)
 {
     if (state[littleBoy] == GRABBING && state[leftLittleBoy] != LIGHTING && state[rightLittleBoy] != LIGHTING)
     {
         state[littleBoy] = LIGHTING;
-        mutex.Release();
         s[littleBoy].Release(); // Signal the semaphore outside the if condition
     }
-    else {
-        mutex.Release(); // Consider releasing the mutex here if the condition is not met
-    }
-    
-
 }
